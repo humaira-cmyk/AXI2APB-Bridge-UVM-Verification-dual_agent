@@ -1,0 +1,11 @@
+sim/build/
+sim/logs/
+sim/simv
+sim/simv.daidir/
+csrc/
+*.vpd
+*.vcd
+*.fsdb
+*.key
+*.log
+.DS_Store
