@@ -101,6 +101,45 @@ regression:
 		echo "############################################################"; \
 		$(MAKE) sim TEST=$$t || exit $$?; \
 	done
+# ============================================================
+# 1. Pehle check karo waveform file bani hai
+# ============================================================
+ls -lh out/build_axi2apb_reset_test/waveform.vpd
+
+# ============================================================
+# 2. DVE mein waveform open karo
+# ============================================================
+dve -vpd out/build_axi2apb_reset_test/waveform.vpd &
+
+
+# ============================================================
+# PERMANENT FIX:
+# Apne Makefile ke end mein ye target add kar do
+# ============================================================
+
+gui:
+	@if [ ! -f "$(RUN_DIR)/waveform.vpd" ]; then \
+		echo "ERROR: Waveform not found: $(RUN_DIR)/waveform.vpd"; \
+		echo "First run: make sim TEST=$(TEST)"; \
+		exit 1; \
+	fi
+	dve -vpd $(RUN_DIR)/waveform.vpd &
+
+
+# ============================================================
+# Uske baad kisi bhi test ki wave aise open hogi:
+# ============================================================
+
+make gui TEST=axi2apb_reset_test
+
+# Single write:
+make gui TEST=axi2apb_single_write_test
+
+# Wait-state:
+make gui TEST=axi2apb_wait_state_test
+
+# Write backpressure:
+make gui TEST=axi2apb_write_backpressure_test
 
 summary:
 	@echo ""
