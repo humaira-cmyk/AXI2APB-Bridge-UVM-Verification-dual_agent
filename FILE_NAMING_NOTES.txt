@@ -1,7 +1,0 @@
-Project: AXI2APB_Bridge_UVM_Verification
-Renamed testbench file: tb/smoke_tb.sv -> tb/axi2apb_tb_top.sv
-Renamed top module: uvm_tb -> axi2apb_tb_top
-Updated uvm/build.flist and sim/Makefile to match.
-Original AXI2APB DUT RTL filenames intentionally unchanged because module names and hierarchy depend on them.
-Note: Files apb/axi_sequence.sv and apb/axi_sequencer.sv are legacy misplaced duplicates; active build uses the copies in uvm/axi/.
-Compilation not tested on VCS; a valid Synopsys license is required.
